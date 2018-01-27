@@ -13,7 +13,7 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
 }));
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login');
+    res.render('authentication/login', {error: req.flash("error") });
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {

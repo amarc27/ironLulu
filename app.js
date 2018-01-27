@@ -11,6 +11,8 @@ const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const LocalStrategy      = require('passport-local').Strategy;
 const bcrypt             = require('bcrypt');
+const flash              = require("connect-flash");
+
 
 const User               = require('./models/user');
 
@@ -40,6 +42,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Passport Strategy for signup
+app.use(flash());
+
+
 app.use(session({
   secret: 'ironluludev',
   resave: false,
@@ -61,16 +66,16 @@ passport.deserializeUser((id, cb) => {
 
 // Signing Up
 passport.use('local-signup', new LocalStrategy(
-  { passReqToCallback: true },
-  (req, username, password, next) => {
-    console.log("DEBUG local-signup ")
-    console.log("DEBUG req", req)
-    console.log("DEBUG username", username)
-    console.log("DEBUG password", password)
+  {
+    usernameField: 'email',
+    passReqToCallback: true
+  },
+  (req, email, password, next) => {
+    console.log("DEBUG email", email)
     // To avoid race conditions
     process.nextTick(() => {
       User.findOne({
-        'username': username
+        'email': email
       }, (err, user) => {
         if (err) { return next(err); }
 
@@ -78,10 +83,9 @@ passport.use('local-signup', new LocalStrategy(
           return next(null, false);
         } else {
           // Destructure the body
-          const { username, email, description, password, firstname, lastname } = req.body;
+          const { email, description, password, firstname, lastname } = req.body;
           const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
           const newUser = new User({
-            username,
             email,
             description,
             firstname,
@@ -101,46 +105,39 @@ passport.use('local-signup', new LocalStrategy(
 );
   // NEW
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 
 
 //Passport Strategy for log in
-passport.use('local-login', new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(null, false, { message: "Incorrect username" });
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
-    }
+passport.use('local-login', new LocalStrategy({
+  usernameField: 'email',
+  passReqToCallback: true,
+},
+  (req, email, password, next) => {
+    User.findOne({ email }, (err, user) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        req.flash('error','Incorrect email')
+        return next(null, false);
+      }
+      if (!bcrypt.compareSync(password, user.password)) {
+        req.flash('error','Incorrect password')
+        return next(null, false);
+      }
 
-    return next(null, user);
-  });
-}));
+      return next(null, user);
+    });
+  }));
 
 
-
-
-
-//Initializing a Session, and Passport
-app.use(session({
-  secret: 'ironluludev',
-  resave: false,
-  saveUninitialized: true,
-  store: new MongoStore( { mongooseConnection: mongoose.connection })
-}))
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 
 app.use( (req, res, next) => {
+  console.log("DEBUG req.user", req.user)
   if (typeof(req.user) !== "undefined"){
     res.locals.userSignedIn = true;
   } else {
