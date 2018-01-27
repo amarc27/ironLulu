@@ -8,6 +8,10 @@ var bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 
+const passport           = require('passport');
+const session            = require('express-session');
+const MongoStore         = require('connect-mongo')(session);
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -33,6 +37,17 @@ app.use( (req, res, next) => {
   }
   next();
 });
+
+app.use(session({
+  secret: 'ironfundingdev',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore( { mongooseConnection: mongoose.connection })
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 app.use('/', index);
