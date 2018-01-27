@@ -15,11 +15,16 @@ const MongoStore         = require('connect-mongo')(session);
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+mongoose.connect('mongodb://localhost:3000/ironLulu');
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('layout', 'layouts/main-layout');
+app.use(expressLayouts);
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -38,6 +43,8 @@ app.use( (req, res, next) => {
   next();
 });
 
+
+//Initializing a Session, and Passport
 app.use(session({
   secret: 'ironfundingdev',
   resave: false,
@@ -49,7 +56,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
+//A mettre à la fin, après les middlewares, et avant les gestions d'erreur
 app.use('/', index);
 app.use('/users', users);
 
