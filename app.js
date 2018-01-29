@@ -10,15 +10,15 @@ const passport           = require('passport');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const LocalStrategy      = require('passport-local').Strategy;
+const User               = require('./models/user');
 const bcrypt             = require('bcrypt');
 const flash              = require("connect-flash");
 
+const Campaign           = require('./models/campaign');
 
-const User               = require('./models/user');
-
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication.js');
-
+const index              = require('./routes/index');
+const authRoutes         = require('./routes/authentication.js');
+const campaign           = require('./routes/campaign.js');
 mongoose.connect('mongodb://localhost/ironlulu');
 
 const app = express();
@@ -95,7 +95,7 @@ passport.use('local-signup', new LocalStrategy(
 
           newUser.save((err) => {
             if (err) { next(err); }
-            else 
+            else
               return next(null, newUser);
           });
         }
@@ -149,9 +149,7 @@ app.use( (req, res, next) => {
 
 app.use('/', index);
 app.use('/', authRoutes);
-
-
-
+app.use('/campaign', campaign);
 
 
 // catch 404 and forward to error handler
