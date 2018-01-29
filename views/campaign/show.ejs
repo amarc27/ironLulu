@@ -1,0 +1,10 @@
+<h1><%= campaign.name %></h1>
+<h2>Category: <span><%= campaign.category %></span></h2>
+<h3>Description: <span><%= campaign.description %></span></h3>
+<p><%= campaign.timeRemaining.days %> <%= campaign.timeRemaining.unit %></p>
+<% if (userSignedIn && campaign._creator) { %>
+<button>Edit</button>
+<% } %>
+<% if (userSignedIn && !campaign._creator) { %>
+<button>Postuler</button>
+<% } %>

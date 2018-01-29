@@ -5,6 +5,7 @@ const passport = require("passport");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const router  = express.Router();
 
+//Créer une campagne
 router.get('/new', (req, res, next) => {
   res.render('campaign/new', { types: TYPES });
 });
@@ -16,15 +17,30 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
     category: req.body.category,
     address: req.body.address,
     deadline: req.body.deadline,
-    _creator: req.user._id
+    _creator: req.user._id,
+    username: req.user.name
   });
 
   newCampaign.save( (err) => {
     if (err) {
-    res.render('campaigns/new', { campaign: newCampaign, types: TYPES });
+    res.render('campaign/new', { campaign: newCampaign, types: TYPES });
   } else {
-    res.redirect(`/campaigns/${newCampaign._id}`);
+    res.redirect(`/campaign/${newCampaign._id}`);
   }
+  });
+});
+
+//Afficher une campagne
+router.get('/:id', (req, res, next) => {
+  const campaignId = req.params.id;
+
+  Campaign.findById(campaignId, (err, campaign) => {
+    if (err) { return next(err); }
+
+    campaign.populate('_creator', (err, campaign) => {
+      if (err){ return next(err); }
+      return res.render('campaign/show', { campaign });
+    });
   });
 });
 

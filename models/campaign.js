@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+const moment   = require('moment');
 const TYPES    = require('./campaign-types');
 
 const campaignSchema = new Schema({
@@ -12,6 +13,12 @@ const campaignSchema = new Schema({
 },
 {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
+});
+
+campaignSchema.virtual('timeRemaining').get(function () {
+  let remaining = moment(this.deadline).fromNow(true).split(' ');
+  let [days, unit] = remaining;
+  return { days, unit };
 });
 
 const Campaign = mongoose.model('Campaign', campaignSchema);

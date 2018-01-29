@@ -12,7 +12,8 @@ const MongoStore         = require('connect-mongo')(session);
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
 const bcrypt             = require('bcrypt');
-const flash              = require("connect-flash");
+const flash              = require('connect-flash');
+const moment             = require('moment');
 
 const Campaign           = require('./models/campaign');
 
@@ -145,7 +146,6 @@ app.use( (req, res, next) => {
   }
   next();
 });
-
 
 app.use('/', index);
 app.use('/', authRoutes);
