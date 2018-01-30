@@ -1,9 +1,25 @@
 <div class="container-fluid">
   <div class="home-heading text-center row">
     <div class="home-heading-wrapper">
-      <h1></h1>
-      <p>Kickstarter creators pursue bold ideas on their own terms — and make an impact on the world, too.</p>
-      <a class="btn btn-default" href="#">Read their stories</a>
+      <h1>All campaigns</h1>
+
+      <div class="campaign-row row">
+          <h3 class="text-center">You may be interested in...</h3>
+          <% campaigns.forEach((campaign) => { %>
+            <div class="col-sm-3 home-campaign-box">
+              <!-- <img src="<%= campaign.image %>"> -->
+              <div class="campaign-info-wrapper">
+                <span class="light-text description"><%= campaign.category %></span><br><br>
+                <a class="title" href="/campaign/<%= campaign._id %>">
+                  <strong><%= campaign.name %></strong>
+                </a><br>
+                <span class="light-text description"><%= campaign.description %></span><br><br>
+                by <span class="light-text"><%= campaign._creator.firstname %></span><br>
+              </div>
+            </div>
+          <%  }) %>
+        </div>
+
     </div>
   </div>
 </div>

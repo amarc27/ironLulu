@@ -1,9 +1,9 @@
 const express = require('express');
+const router  = express.Router();
 const Campaign = require('../models/campaign');
 const TYPES    = require('../models/campaign-types');
 const passport = require("passport");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
-const router  = express.Router();
 
 //Créer une campagne
 router.get('/new', (req, res, next) => {
@@ -31,10 +31,8 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
 
 //Afficher une campagne
 router.get('/:id', (req, res, next) => {
-  const campaignId = req.params.id;
-
-  Campaign.findById(campaignId, (err, campaign) => {
-    if (err) { return next(err); }
+  Campaign.findById(req.params.id, (err, campaign) => {
+    if (err){ return next(err); }
 
     campaign.populate('_creator', (err, campaign) => {
       if (err){ return next(err); }

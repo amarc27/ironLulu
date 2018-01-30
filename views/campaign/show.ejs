@@ -1,10 +1,30 @@
-<h1><%= campaign.name %></h1>
-<h2>Category: <span><%= campaign.category %></span></h2>
-<h3>Description: <span><%= campaign.description %></span></h3>
-<p><%= campaign.timeRemaining.days %> <%= campaign.timeRemaining.unit %></p>
-<% if (userSignedIn && campaign._creator) { %>
-<button>Edit</button>
-<% } %>
-<% if (userSignedIn && !campaign._creator) { %>
-<button>Postuler</button>
-<% } %>
+<div class="container campaign-container">
+        <div class="row">
+          <div class="col-sm-2">
+            By: <strong><%= campaign._creator.firstname %></strong>
+          </div>
+          <div class="col-sm-10">
+            <h1><%= campaign.name %></h1>
+            <h2 class="campaign-category"><%= campaign.category %></h2>
+            <p class="campaign-description"><%= campaign.description %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <!-- INSERER IMAGE ICI <img class="campaign-image" src="<%= campaign.image %>"> -->
+          </div>
+          <div class="col-sm-4 campaign-info">
+            <div class="campaign-progress">
+              <progress value="<%= campaign.timeRemaining %>"></progress>
+            </div>
+            <div class="campaign-pledged">
+              <span class="campaign-total">$<%= campaign.timeRemaining %></span><br>
+            </div>
+            <div class="campaign-time">
+              <strong class="large-strong"><%= campaign.timeRemaining.days %></strong><br>
+              <span class="light-text"><%= campaign.timeRemaining.unit  %> to go.</span>
+            </div>
+            <a class="btn backer-btn" href="/campaigns/<%= campaign._id%>/rewards">Back This Project</a>
+          </div>
+        </div>
+      </div>
