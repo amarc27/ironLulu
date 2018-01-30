@@ -53,12 +53,12 @@ nav.navbar {
 .home-heading-wrapper {
   padding: 0 5%;
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .home-heading-wrapper > h1 {
-  font-size: 9rem;
+  font-size: 5rem;
 }
 
 .home-heading-wrapper > p {

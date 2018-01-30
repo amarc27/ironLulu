@@ -20,6 +20,8 @@ const Campaign           = require('./models/campaign');
 const index              = require('./routes/index');
 const authRoutes         = require('./routes/authentication.js');
 const campaign           = require('./routes/campaign.js');
+
+
 mongoose.connect('mongodb://localhost/ironlulu');
 
 const app = express();
@@ -72,7 +74,6 @@ passport.use('local-signup', new LocalStrategy(
     passReqToCallback: true
   },
   (req, email, password, next) => {
-    console.log("DEBUG email", email)
     // To avoid race conditions
     process.nextTick(() => {
       User.findOne({
@@ -138,7 +139,6 @@ app.use(passport.session());
 
 
 app.use( (req, res, next) => {
-  console.log("DEBUG req.user", req.user)
   if (typeof(req.user) !== "undefined"){
     res.locals.userSignedIn = true;
   } else {

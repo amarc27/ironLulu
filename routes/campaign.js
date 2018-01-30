@@ -1,9 +1,9 @@
 const express = require('express');
+const router  = express.Router();
 const Campaign = require('../models/campaign');
 const TYPES    = require('../models/campaign-types');
 const passport = require("passport");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
-const router  = express.Router();
 
 //Créer une campagne
 router.get('/new', (req, res, next) => {
