@@ -5,5 +5,6 @@ module.exports = [
   "Informatique", 
   "Babysitting", 
   "Soutien scolaire", 
-  "Jardinage"
+  "Jardinage",
+  "Autre"
   ];

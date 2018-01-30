@@ -17,8 +17,7 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
     category: req.body.category,
     address: req.body.address,
     deadline: req.body.deadline,
-    _creator: req.user._id,
-    username: req.user.name
+    _creator: req.user._id
   });
 
   newCampaign.save( (err) => {
@@ -39,6 +38,40 @@ router.get('/:id', (req, res, next) => {
       if (err){ return next(err); }
       return res.render('campaign/show', { campaign });
     });
+  });
+});
+
+
+//Editer une campagne
+router.get('/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
+  Campaign.findById(req.params.id, (err, campaign) => {
+    if (err)       { return next(err) }
+    if (!campaign) { return next(new Error("404")) }
+    return res.render('campaign/edit', { campaign, types: TYPES })
+  });
+});
+
+
+router.post('/:id', ensureLoggedIn('/login'), (req, res, next) => {
+  const updates = {
+    name: req.body.name,
+    description: req.body.description,
+    category: req.body.category,
+    address: req.body.address,
+    deadline: req.body.deadline
+  };
+
+  Campaign.findByIdAndUpdate(req.params.id, updates, (err, campaign) => {
+    if (err) {
+      return res.render('campaign/edit', {
+        campaign,
+        errors: campaign.errors
+      });
+    }
+    if (!campaign) {
+      return next(new Error('404'));
+    }
+    return res.redirect(`/campaign/${campaign._id}`);
   });
 });
 

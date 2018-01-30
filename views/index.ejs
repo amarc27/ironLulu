@@ -4,12 +4,12 @@
       <h1>All campaigns</h1>
 
       <div class="campaign-row row">
-          <h3 class="text-center">You may be interested in...</h3>
+        <br><br>
           <% campaigns.forEach((campaign) => { %>
             <div class="col-sm-3 home-campaign-box">
               <!-- <img src="<%= campaign.image %>"> -->
               <div class="campaign-info-wrapper">
-                <span class="light-text description"><%= campaign.category %></span><br><br>
+                <span class="light-text description"><p>[<%= campaign.category %>]</p></span><br><br>
                 <a class="title" href="/campaign/<%= campaign._id %>">
                   <strong><%= campaign.name %></strong>
                 </a><br>

@@ -21,5 +21,9 @@ campaignSchema.virtual('timeRemaining').get(function () {
   return { days, unit };
 });
 
+campaignSchema.virtual('inputFormattedDate').get(function(){
+  return moment(this.deadline).format('YYYY-MM-DD');
+});
+
 const Campaign = mongoose.model('Campaign', campaignSchema);
 module.exports = Campaign;
