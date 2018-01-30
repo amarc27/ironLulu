@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 centered-form">
+      <form action="/campaign/<%= campaign._id %>" method="post">
+        <div class="form-group">
+          <label for="title">Name</label>
+          <input type="text" name="title" class="form-control" value="<%= campaign.name %>">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            class="form-control">
+            <%= campaign.description %>
+          </textarea>
+        </div>
+        <div class="form-group">
+          <label for="title">Address</label>
+          <input type="text" name="title" class="form-control" value="<%= campaign.address %>">
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label><br>
+          <select name="category" id="category">
+            <% types.forEach((category) => { %>
+            <!-- This selects the campaign's category in the dropdown -->
+              <% if (category === campaign.category) { %>
+                <option
+                  selected
+                  type="text"
+                  value="<%= category %>"
+                  class="form-control">
+                <%= category %>
+                </option>
+              <% } else { %>
+                <option type="text" value="<%= category %>" class="form-control"><%= category %></option>
+              <% } %>
+            <%  }) %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="deadline">Deadline</label>
+          <input type="date" name="deadline" class="form-control" value="<%= campaign.inputFormattedDate %>">
+        </div>
+        <div class="form-group">
+          <button type="submit">Update Campaign</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

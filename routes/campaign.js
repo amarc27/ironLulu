@@ -18,7 +18,6 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
     address: req.body.address,
     deadline: req.body.deadline,
     _creator: req.user._id,
-    username: req.user.name
   });
 
   newCampaign.save( (err) => {
@@ -42,6 +41,25 @@ router.get('/:id', (req, res, next) => {
       return res.render('campaign/show', { campaign });
     });
   });
+});
+
+//Editer la campagne
+router.get('/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
+  Campaign.findById(req.params.id, (err, campaign) => {
+    if (err)       { return next(err) }
+    if (!campaign) { return next(new Error("404")) }
+    return res.render('campaign/edit', { campaign, types: TYPES })
+  });
+});
+
+router.post('/:id', ensureLoggedIn('/login'), (req, res, next) => {
+  const updates = {
+    name: req.body.name,
+    description: req.body.description,
+    category: req.body.category,
+    address: req.body.address,
+    deadline: req.body.deadline
+  };
 });
 
 module.exports = router;
