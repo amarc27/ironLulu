@@ -32,10 +32,8 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
 
 //Afficher une campagne
 router.get('/:id', (req, res, next) => {
-  const campaignId = req.params.id;
-
-  Campaign.findById(campaignId, (err, campaign) => {
-    if (err) { return next(err); }
+  Campaign.findById(req.params.id, (err, campaign) => {
+    if (err){ return next(err); }
 
     campaign.populate('_creator', (err, campaign) => {
       if (err){ return next(err); }
@@ -43,5 +41,6 @@ router.get('/:id', (req, res, next) => {
     });
   });
 });
+
 
 module.exports = router;
