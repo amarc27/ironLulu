@@ -25,5 +25,10 @@ campaignSchema.virtual('inputFormattedDate').get(function(){
   return moment(this.deadline).format('YYYY-MM-DD');
 });
 
+
+campaignSchema.methods.belongsTo = function(user){
+  return this._creator.equals(user._id);
+};
+
 const Campaign = mongoose.model('Campaign', campaignSchema);
 module.exports = Campaign;

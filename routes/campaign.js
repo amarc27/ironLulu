@@ -4,6 +4,20 @@ const Campaign = require('../models/campaign');
 const TYPES    = require('../models/campaign-types');
 const passport = require("passport");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const { authorizeCampaign, checkOwnership } = require('../middleware/campaign-authorization');
+
+
+//Afficher toutes les campagnes
+router.get('/all', (req, res, next) => {
+  Campaign
+    .find({})
+    .populate('_creator')
+    .then((campaigns) => {
+      res.render('index', { campaigns });
+    });
+});
+
+
 
 //Créer une campagne
 router.get('/new', (req, res, next) => {
@@ -30,7 +44,7 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 //Afficher une campagne
-router.get('/:id', (req, res, next) => {
+router.get('/:id', checkOwnership, (req, res, next) => {
   Campaign.findById(req.params.id, (err, campaign) => {
     if (err){ return next(err); }
 
@@ -52,7 +66,7 @@ router.get('/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 
-router.post('/:id', ensureLoggedIn('/login'), (req, res, next) => {
+router.post('/:id', ensureLoggedIn('/login'), authorizeCampaign, checkOwnership, (req, res, next) => {
   const updates = {
     name: req.body.name,
     description: req.body.description,
@@ -73,6 +87,19 @@ router.post('/:id', ensureLoggedIn('/login'), (req, res, next) => {
     }
     return res.redirect(`/campaign/${campaign._id}`);
   });
+});
+
+
+
+//DELETE A CAMPAIGN
+router.post('/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+
+  Campaign.findByIdAndRemove(id, (err, campaign) => {
+    if (err){ return next(err); }
+    return res.redirect('/campaign/all');
+  });
+
 });
 
 

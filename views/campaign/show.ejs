@@ -24,7 +24,18 @@
               <strong class="large-strong"><%= campaign.timeRemaining.days %></strong><br>
               <span class="light-text"><%= campaign.timeRemaining.unit  %> to go.</span>
             </div>
-            <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">EDIT</a>
+            <!-- <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">EDIT</a> -->
+            <% if (campaignIsCurrentUsers) { %>
+              <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">Edit the campaign</a>
+            <% } else { %>
+              <a class="btn backer-btn" href="#">Apply to this campaign</a>
+            <% } %>
+
+            <% if (campaignIsCurrentUsers) { %>
+            <form action="/campaign/<%= campaign._id%>/delete" method="POST">
+              <button type="submit" class="btn btn-danger">Delete this campaign</button>
+            </form>
+            <% } %>
           </div>
         </div>
       </div>
