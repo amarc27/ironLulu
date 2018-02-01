@@ -20,6 +20,7 @@ const Campaign           = require('./models/campaign');
 const index              = require('./routes/index');
 const authRoutes         = require('./routes/authentication.js');
 const campaign           = require('./routes/campaign.js');
+const profile           = require('./routes/profile.js');
 
 
 
@@ -151,6 +152,7 @@ app.use( (req, res, next) => {
 app.use('/', index);
 app.use('/', authRoutes);
 app.use('/campaign', campaign);
+app.use('/profile', profile);
 
 
 // catch 404 and forward to error handler
