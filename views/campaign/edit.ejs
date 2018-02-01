@@ -2,10 +2,12 @@
         <div class="row">
           <div class="col-sm-6 centered-form">
             <form action="/campaign/<%= campaign._id %>" method="post">
+              
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" name="name" class="form-control" value="<%= campaign.name %>">
               </div>
+              
               <div class="form-group">
                 <label for="description">Description</label>
                 <textarea
@@ -15,6 +17,7 @@
                   <%= campaign.description %>
                 </textarea>
               </div>
+              
               <div class="form-group">
                 <label for="category">Category</label><br>
                 <select name="category" id="category">
@@ -34,14 +37,22 @@
                   <%  }) %>
                 </select>
               </div>
+
+              <div class="form-group">
+                <label for="address">address</label>
+                <input type="text" name="address" class="form-control" value="<%= campaign.address %>">
+              </div>
+              
               <div class="form-group">
                 <label for="deadline">Deadline</label>
                 <input type="date" name="deadline" class="form-control" value="<%= campaign.inputFormattedDate %>">
               </div>
+              
               <div class="form-group">
                 <button type="submit">Update Campaign</button>
               </div>
             </form>
+            
             <% if (typeof(errors) !== 'undefined'){ %>
                 <div class="alert alert-danger">
                 <ul>
@@ -50,7 +61,8 @@
                   <% } %>
                 </ul>
                 </div>
-              <% } %>
+            <% } %>
+
           </div>
         </div>
       </div>
