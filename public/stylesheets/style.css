@@ -123,3 +123,8 @@ progress {
 .campaign-description {
   padding-right: 275px;
 }
+
+#map {
+  height: 500px;
+  width: 100%
+}
