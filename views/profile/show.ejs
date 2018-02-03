@@ -1,0 +1,22 @@
+<div class="container campaign-container">
+  <div class="row">
+    <div class="col-sm-2">
+      Firstname: <strong><%= user.firstname %></strong>
+    </div>
+    <div class="col-sm-2">
+      Lastname: <strong><%= user.lastname %></strong>
+    </div>
+    <div class="col-sm-2">
+      Description: <strong><%= user.description %></strong>
+    </div>
+    <div class="col-sm-2">
+      Created at: <strong><%= user.createdAt %></strong>
+    </div>
+
+    <!-- Edit profile -->
+    <a class="btn backer-btn" href="/profile/<%= user._id%>/edit">Edit the profile</a>
+
+    <!--Delete form-->
+    <a class="btn backer-btn" href="/profile/<%= user._id%>/delete">Delete the profile</a>
+  </div>
+</div>

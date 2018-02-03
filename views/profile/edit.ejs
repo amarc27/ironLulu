@@ -1,54 +1,31 @@
-<h1>Edit profile</h1>
-<div class="container">
-        <div class="row">
-          <div class="col-sm-6 centered-form">
-            <form action="/profile" method="post">
-              
-              <div class="form-group">
-                <label for="firstname">Firstname</label>
-                <input type="text" name="firstname" class="form-control" value="<%= user.firstname %>">
-              </div>
-              
-              <div class="form-group">
-                <label for="lastname">Lastname</label>
-                <input type="text" name="lastname" class="form-control" value="<%= user.lastname %>">
-              </div>
-              
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" name="email" class="form-control" value="<%= user.email %>">
-              </div>
+<h1>Edit campaign</h1>
+  <form action="/profile/<%= user._id%>" method="post">
+    <div class="form-group">
+      <label for="firstname">Firstname</label>
+      <input type="text" name="name" class="form-control" value="<%=user.firstname %>">
+    </div>
 
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="text" name="password" class="form-control" value="<%= user.password %>">
-              </div>
-              
-              <div class="form-group">
-                <label for="description">Description</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  class="form-control">
-                  <%= user.description %>
-                </textarea>
-              </div>
-              
-              <div class="form-group">
-                <button type="submit">Update profile</button>
-              </div>
-            </form>
-            
-            <% if (typeof(errors) !== 'undefined'){ %>
-                <div class="alert alert-danger">
-                <ul>
-                  <% for (let error in errors){ %>
-                    <li><%= errors[error].message %></li>
-                  <% } %>
-                </ul>
-                </div>
-            <% } %>
+    <div class="form-group">
+      <label for="lastname">Lastname</label>
+      <input type="text" name="name" class="form-control" value="<%=user.lastname %>">
+    </div>
 
-          </div>
-        </div>
-      </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="text" name="email" class="form-control" value="<%=user.email %>">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" name="email" class="form-control" value="<%=user.password %>">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" class="form-control"><%= user.description %></textarea>
+    </div>
+
+    <div class="form-group">
+      <button type="submit">Update Profile</button>
+    </div>
+  </form>
