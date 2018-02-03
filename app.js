@@ -14,6 +14,7 @@ const User               = require('./models/user');
 const bcrypt             = require('bcrypt');
 const flash              = require('connect-flash');
 const moment             = require('moment');
+require("dotenv").config();
 
 const Campaign           = require('./models/campaign');
 
@@ -24,7 +25,7 @@ const profile           = require('./routes/profile.js');
 
 
 
-mongoose.connect('mongodb://localhost/ironlulu');
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
