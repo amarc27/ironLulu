@@ -10,6 +10,15 @@
           </div>
         </div>
         <div class="row">
+          Applicants
+          <% if (campaignIsCurrentUsers) { %>
+            <ul>
+              <% campaign.applicants.forEach((user) => { %>
+                <li><%= user.firstname %></li>
+              <% }) %>
+            </ul>
+          <% } %>
+
           <div class="col-sm-8">
             <!-- INSERER IMAGE ICI <img class="campaign-image" src="<%= campaign.image %>"> -->
           </div>
@@ -28,9 +37,8 @@
             <% if (campaignIsCurrentUsers) { %>
               <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">Edit the campaign</a>
             <% } else if (campaign._creator){ %>
-              <a class="btn backer-btn" href="#">Apply to this campaign</a>
+              <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/apply">Apply to this campaign</a>
             <% } %>
-
             <% if (campaignIsCurrentUsers) { %>
             <form action="/campaign/<%= campaign._id%>/delete" method="POST">
               <button type="submit" class="btn btn-danger">Delete this campaign</button>

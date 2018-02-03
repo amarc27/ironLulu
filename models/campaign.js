@@ -10,6 +10,7 @@ const campaignSchema = new Schema({
   address: { type: String, required: true },
   execDate: { type: Date, required: true },
   category: { type: String, enum: TYPES, required: true },
+  applicants: [{ type: Schema.Types.ObjectId, ref: 'User'}]
 },
 {
   timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
