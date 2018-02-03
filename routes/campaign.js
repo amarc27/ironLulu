@@ -48,10 +48,10 @@ router.get('/:id', checkOwnership, (req, res, next) => {
   Campaign.findById(req.params.id, (err, campaign) => {
     if (err){ return next(err); }
 
-    campaign.populate('_creator', (err, campaign) => {
+    campaign.populate('_creator').populate('applicants', ( err, campaign) => {
       if (err){ return next(err); }
       return res.render('campaign/show', { campaign });
-    });
+    })
   });
 });
 
@@ -103,8 +103,18 @@ router.post('/:id/delete', (req, res, next) => {
 });
 
 //Postuler à une campagne
-router.get('/:id/apply', (req, res, next) => {
-  res.render('campaign/apply');
+router.get('/:id/apply',  ensureLoggedIn('/login'), (req, res, next) => {
+  let updates = {$push: {applicants: req.user._id}}
+  Campaign.findByIdAndUpdate(req.params.id, updates, (err, campaign) => {
+    if (err) {
+      return res.redirect(`/campaign/${req.params.id}`)
+    }
+    if (!campaign) {
+      return next(new Error('404'));
+    }
+    console.log(campaign)
+    return res.redirect(`/campaign/${campaign._id}`);
+  });
 });
 
 
