@@ -8,7 +8,7 @@ const campaignSchema = new Schema({
   description: { type: String, required: true },
   _creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   address: { type: String, required: true },
-  deadline: { type: Date, required: true },
+  execDate: { type: Date, required: true },
   category: { type: String, enum: TYPES, required: true },
 },
 {
@@ -16,13 +16,13 @@ const campaignSchema = new Schema({
 });
 
 campaignSchema.virtual('timeRemaining').get(function () {
-  let remaining = moment(this.deadline).fromNow(true).split(' ');
+  let remaining = moment(this.execDate).fromNow(true).split(' ');
   let [days, unit] = remaining;
   return { days, unit };
 });
 
 campaignSchema.virtual('inputFormattedDate').get(function(){
-  return moment(this.deadline).format('YYYY-MM-DD');
+  return moment(this.execDate).format('YYYY-MM-DD');
 });
 
 

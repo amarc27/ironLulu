@@ -30,7 +30,7 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
     description: req.body.description,
     category: req.body.category,
     address: req.body.address,
-    deadline: req.body.deadline,
+    execDate: req.body.execDate,
     _creator: req.user._id
   });
 
@@ -72,7 +72,7 @@ router.post('/:id', ensureLoggedIn('/login'), authorizeCampaign, checkOwnership,
     description: req.body.description,
     category: req.body.category,
     address: req.body.address,
-    deadline: req.body.deadline
+    execDate: req.body.execDate
   };
 
   Campaign.findByIdAndUpdate(req.params.id, updates, (err, campaign) => {

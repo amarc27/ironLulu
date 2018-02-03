@@ -17,7 +17,7 @@ const myCampaigns = [
     description: 'I need someone ironing my shirts',
     _creator: 'John Doe',
     address: '34 rue de Clery',
-    deadline: new Date(2018,2,10,20,0),
+    execDate: new Date(2018,2,10,20,0),
     category: 'Menage & repassage'
   },
   {
@@ -25,7 +25,7 @@ const myCampaigns = [
     description: 'Lorem ipsum',
     _creator: 'John Doe',
     address: '32 rue du mail',
-    deadline: new Date(2018,3,18),
+    execDate: new Date(2018,3,18),
     category: 'Déménagement'
   },
   {
@@ -33,7 +33,7 @@ const myCampaigns = [
     description: 'Vade retro',
     _creator: 'John Doe',
     address: '3 rue du test',
-    deadline: new Date(2018,5,8),
+    execDate: new Date(2018,5,8),
     category: 'Bricolage'
   }
 ];
