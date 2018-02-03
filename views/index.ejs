@@ -14,7 +14,9 @@
                   <strong><%= campaign.name %></strong>
                 </a><br>
                 <span class="light-text description"><%= campaign.description %></span><br><br>
+                <% if (campaign._creator &&  (campaign._creator.firstname===null)  ) {%>
                 by <span class="light-text"><%= campaign._creator.firstname %></span><br>
+                <% } %>
               </div>
             </div>
           <%  }) %>

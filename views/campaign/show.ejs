@@ -1,7 +1,7 @@
 <div class="container campaign-container">
         <div class="row">
           <div class="col-sm-2">
-            By: <strong><%= campaign._creator.firstname %></strong>
+            By: <strong><%= campaign._creator && campaign._creator.firstname %></strong>
           </div>
           <div class="col-sm-10">
             <h1><%= campaign.name %></h1>
@@ -27,7 +27,7 @@
             <!-- <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">EDIT</a> -->
             <% if (campaignIsCurrentUsers) { %>
               <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">Edit the campaign</a>
-            <% } else { %>
+            <% } else if (campaign._creator){ %>
               <a class="btn backer-btn" href="#">Apply to this campaign</a>
             <% } %>
 

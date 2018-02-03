@@ -27,7 +27,7 @@ campaignSchema.virtual('inputFormattedDate').get(function(){
 
 
 campaignSchema.methods.belongsTo = function(user){
-  return this._creator.equals(user._id);
+  return user && this._creator.equals(user._id);
 };
 
 const Campaign = mongoose.model('Campaign', campaignSchema);

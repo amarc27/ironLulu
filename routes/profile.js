@@ -49,4 +49,15 @@ router.post('/:id', ensureLoggedIn('/login'), (req, res, next) => {
     });
 });
 
+//Delete Profile
+router.post('/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+
+  User.findByIdAndRemove(id, (err, user) => {
+    if (err){ return next(err); }
+    return res.redirect('/campaign/all');
+  });
+});
+
+
 module.exports = router;
