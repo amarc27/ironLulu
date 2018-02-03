@@ -102,5 +102,11 @@ router.post('/:id/delete', (req, res, next) => {
 
 });
 
+//Postuler à une campagne
+router.get('/:id/apply', (req, res, next) => {
+  res.render('campaign/apply');
+});
+
+
 
 module.exports = router;
