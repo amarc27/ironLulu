@@ -10,8 +10,8 @@
           </div>
         </div>
         <div class="row">
-          Applicants
           <% if (campaignIsCurrentUsers) { %>
+            Applicants
             <ul>
               <% campaign.applicants.forEach((user) => { %>
                 <li><%= user.firstname %></li>

@@ -17,13 +17,10 @@ const moment             = require('moment');
 require("dotenv").config();
 
 const Campaign           = require('./models/campaign');
-
 const index              = require('./routes/index');
 const authRoutes         = require('./routes/authentication.js');
 const campaign           = require('./routes/campaign.js');
-const profile           = require('./routes/profile.js');
-
-
+const profile            = require('./routes/profile.js');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -108,9 +105,6 @@ passport.use('local-signup', new LocalStrategy(
     });
   })
 );
-  // NEW
-
-
 
 //Passport Strategy for log in
 passport.use('local-login', new LocalStrategy({

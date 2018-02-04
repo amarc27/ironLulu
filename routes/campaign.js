@@ -118,5 +118,4 @@ router.get('/:id/apply',  ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 
-
 module.exports = router;
