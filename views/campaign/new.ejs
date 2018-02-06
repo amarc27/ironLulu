@@ -24,7 +24,7 @@
 
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="text" name="address" class="form-control">
+          <input id="searchTextField" type="text" name="address" class="form-control">
         </div>
 
         <div class="form-group">
@@ -34,6 +34,9 @@
 
         <button type="submit">Create new campaign</button>
       </form>
+
+      <script src="/javascripts/autocomplete.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDljwuTjCeEN0F7djzIX31SKE-msncOWy8&libraries=places&callback=initMap"></script>
     </div>
   </div>
 </div>
