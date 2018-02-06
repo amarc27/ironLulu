@@ -148,7 +148,32 @@ h1 {
   width: 100%;
 }
 
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 50px;
+  border-top: 5px solid #6cb83a;
+}
 
+.footer-logo img {
+  height: 80%;
+  width: 80%;
+  justify-content: center;
+}
+
+.footer-title {
+  color: #6cb83a;
+  font-size: 20px;
+  font-family: 'Calibri', sans-serif;
+  text-transform: uppercase;
+}
+
+.ironlulu-info li {
+  list-style-type: none;
+  margin-top: 5px;
+  color: #545454; 
+}
 
 /*nav ul {
   display: flex;
