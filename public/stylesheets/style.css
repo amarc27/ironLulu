@@ -1,4 +1,202 @@
-body {
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0;
+  border-bottom: 1px solid rgba(103,106,123,0.2);
+  background-color: #fff;
+  height: 90px;
+  position: fixed;
+  z-index: 1;
+}
+
+.lulu-logo-nav {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  padding-left: 20px;
+  padding-right: 80px;
+}
+
+.nav-menu-right {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  list-style-type: none;
+  justify-content: flex-start;
+}
+
+.nav-menu-right ul {
+  padding-right: 20px;
+}
+
+.nav-menu-right ul li {
+  justify-content: space-between;
+  font-size: 20px;
+  line-height: 90px;
+  padding: 0 18px;
+}
+
+.nav-menu-right a {
+  color: rgba(103,106,123,0.6);
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.nav-menu-right ul li a:visited {
+  color: rgba(103,106,123,0.6);
+}
+
+.nav-menu-left {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+  padding-right: 20px;
+  list-style-type: none;
+}
+
+.nav-menu-left ul {
+  display: flex;
+  padding-right: 20px;
+}
+
+.nav-menu-left ul li {
+  font-size: 20px;
+  line-height: 90px;
+}
+
+.nav-menu-left a {
+  color: rgba(103,106,123,0.6);
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.nav-menu-left ul li a:visited {
+  color: rgba(103,106,123,0.6);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 120px;
+}
+
+h1 {
+  font-family: 'Calibri', sans-serif;
+  font-size: 50px;
+  color: #6cb83a;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  height: 250px;
+  width: 250px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+}
+
+.flex-item a {
+  text-decoration: none;
+}
+
+.flex-item a:visited {
+  color: #545454;
+}
+
+.flex-item img {
+  height: 50%;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.category-type {
+  color: #FE6F31;
+  font-size: 12px;
+  font-family: 'Helvetica', sans-serif;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.title {
+  color: #545454;
+  font-size: 20px;
+  font-family: 'Calibri', sans-serif;
+  text-align: left;
+}
+
+
+/*Google Map */
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+
+
+/*nav ul {
+  display: flex;
+  padding-right: 20px;
+  justify-content: flex-start;
+}
+
+nav ul li {
+
+}
+
+nav ul li a {
+  color: rgba(103,106,123,0.6);
+  text-decoration: none;
+}
+
+nav ul li a:visited {
+  color: rgba(103,106,123,0.6);
+}*/
+
+/*
+nav img {
+  display: flex;
+  align-items: center;
+  width: 200px;
+}
+
+
+
+
+
+nav ul li a {
+  color: #111;
+  text-decoration: none;
+}
+
+button {
+
+}
+*/
+
+
+
+
+
+
+
+/*body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -41,8 +239,9 @@ nav.navbar {
   color: black;
   padding: 15px;
   border: 0;
-}
+}*/
 
+/*
 .home-heading {
   background-color: #E3ECFA;
   height: 75vh;
@@ -124,7 +323,5 @@ progress {
   padding-right: 275px;
 }
 
-#map {
-  height: 500px;
-  width: 100%
-}
+
+*/

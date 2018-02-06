@@ -20,7 +20,7 @@ router.get('/all', (req, res, next) => {
 
 
 //Créer une campagne
-router.get('/new', (req, res, next) => {
+router.get('/new', ensureLoggedIn('/login'), (req, res, next) => {
   res.render('campaign/new', { types: TYPES });
 });
 

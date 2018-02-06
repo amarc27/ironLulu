@@ -1,39 +1,27 @@
-<div class="container-fluid">
-  <div class="home-heading text-center row">
-    <div class="home-heading-wrapper">
-      <h1>All campaigns</h1>
+<h1>Discover all campaigns around you</h1>
+<div id="map"></div>
 
-      <div class="campaign-row row">
-        <br><br>
-          <% campaigns.forEach((campaign) => { %>
-            <div class="col-sm-3 home-campaign-box">
-              <!-- <img src="<%= campaign.image %>"> -->
-              <div class="campaign-info-wrapper">
-                <span class="light-text description"><p>[<%= campaign.category %>]</p></span><br><br>
-                <a class="title" href="/campaign/<%= campaign._id %>">
-                  <strong><%= campaign.name %></strong>
-                </a><br>
-                <span class="light-text description"><%= campaign.description %></span><br><br>
-                <% if (campaign._creator &&  (campaign._creator.firstname===null)  ) {%>
-                by <span class="light-text"><%= campaign._creator.firstname %></span><br>
-                <% } %>
-              </div>
-            </div>
-          <%  }) %>
-        </div>
-        <div id="map"></div>
-        <script>
-          var map;
-          function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: -34.397, lng: 150.644},
-              zoom: 8
-            });
-          }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDljwuTjCeEN0F7djzIX31SKE-msncOWy8&callback=initMap"
-        <script type="text/javascript" src="/javascripts/main.js"></script>
-      </script>
+<div class="flex-container">
+  <% campaigns.forEach((campaign) => { %>
+    <div class="flex-item">
+      <img src="/images/outils-bricolage.jpg"><br>
+      <span class="category-type"><%= campaign.category %></span><br>
+      <a class="title" href="/campaign/<%= campaign._id %>"><%= campaign.name %></a><br>
+      <span class="light-text description"><%= campaign.description %></span>
+      <% if (campaign._creator &&  (campaign._creator.firstname===null)  ) {%>
+        by <span class="light-text"><%= campaign._creator.firstname %></span><br>
+      <% } %>
     </div>
-  </div>
+  <% }) %>
 </div>
+
+<script>
+  var map;
+  function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDljwuTjCeEN0F7djzIX31SKE-msncOWy8&callback=initMap"></script>
