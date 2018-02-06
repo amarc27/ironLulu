@@ -1,14 +1,7 @@
-// function startMap() {
-//     var ironhackBCN = {
-//         lat: 41.3977381, 
-//         lng: 2.190471916};
-//     var map = new google.maps.Map(
-//       document.getElementById('map'), 
-//       {
-//         zoom: 15,
-//         center: ironhackBCN
-//       }
-//     );
-//   }
-  
-//   startMap();
+var map;
+function initMap() {
+map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: -34.397, lng: 150.644},
+  zoom: 8
+  });
+}

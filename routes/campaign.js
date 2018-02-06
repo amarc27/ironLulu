@@ -102,6 +102,8 @@ router.post('/:id/delete', (req, res, next) => {
 
 });
 
+
+
 //Postuler à une campagne
 router.get('/:id/apply',  ensureLoggedIn('/login'), (req, res, next) => {
   let updates = {$push: {applicants: req.user._id}}
