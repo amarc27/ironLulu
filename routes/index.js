@@ -36,13 +36,13 @@ router.get('/my-applications', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 //Liste des campagnes d'un utilisateur
-/*router.get('/mytest', ensureLoggedIn('/login'), (req, res, next) => {
+router.get('/mytest', (req, res, next) => {
   Campaign
     .find({})
     .populate('_creator')
     .then((campaigns) => {
-      res.render('index', { campaigns });
+      res.render('profile/show', { campaigns });
     });
-});*/
+});
 
 module.exports = router;

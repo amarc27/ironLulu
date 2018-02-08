@@ -1,35 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 centered-form">
-      <form action="/signup" method="post">
-        
-        <div class="form-group">
-          <label for="firstname">Firstname</label>
-          <input type="text" name="firstname" class="form-control">
-        </div>
-        
-        <div class="form-group">
-          <label for="lastname">Lastname</label>
-          <input type="text" name="lastname" class="form-control">
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" name="email" class="form-control">
-        </div>
-        
-        <div class="form-group">
-          <label for="description">Description</label>
-          <input type="text" name="description" class="form-control">
-        </div>
-        
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control">
-        </div>
-        
-        <button type="submit">Signup</button>
-      </form>
-    </div>
+<h1>Need help? Join Lulu network</h1>
+
+<form action="/signup" method="post" class="form-signup">
+  <div class="form-group">
+    <input type="text" name="firstname" value="Firstname">
   </div>
-</div>
+
+  <div class="form-group">
+    <input type="text" name="lastname" value="Lastname">
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="email" value="Email">
+  </div>
+
+  <div class="form-group">
+    <input type="text" name="description" value="Description">
+  </div>
+
+  <div class="form-group">
+    <input type="password" name="password" value="Password">
+  </div>
+
+  <button type="submit">Signup</button>
+</form>
