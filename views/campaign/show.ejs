@@ -1,13 +1,12 @@
-
-<div class="alert alert-success alert-dismissible" role="alert">
-  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-
+<!-- Main code -->
 <div class="container campaign-container">
         <div class="row">
+          <% if (displayBannier) { %>
+          <div class="alert success">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            You successfully applied for this campaign !
+          </div>
+          <% } %>
           <div class="col-sm-2">
             By: <strong><%= campaign._creator && campaign._creator.firstname %></strong>
           </div>
@@ -41,11 +40,12 @@
               <strong class="large-strong"><%= campaign.timeRemaining.days %></strong><br>
               <span class="light-text"><%= campaign.timeRemaining.unit  %> to go.</span>
             </div>
-            <!-- <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">EDIT</a> -->
             <% if (campaignIsCurrentUsers) { %>
               <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">Edit the campaign</a>
             <% } else if (campaign._creator){ %>
-              <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/apply">Apply to this campaign</a>
+              <div id="apply">
+                  <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/apply">Apply to this campaign</a>
+              </div>
             <% } %>
             <% if (campaignIsCurrentUsers) { %>
             <form action="/campaign/<%= campaign._id%>/delete" method="POST">
