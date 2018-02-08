@@ -7,7 +7,8 @@ const campaignSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   _creator: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  address: { type: String, required: true },
+  //address: { type: String, required: true },
+  location: {address: String, coordinates: [Number]},
   execDate: { type: Date, required: true },
   category: { type: String, enum: TYPES, required: true },
   applicants: [{ type: Schema.Types.ObjectId, ref: 'User'}]
@@ -30,6 +31,8 @@ campaignSchema.virtual('inputFormattedDate').get(function(){
 campaignSchema.methods.belongsTo = function(user){
   return user && this._creator.equals(user._id);
 };
+
+campaignSchema.index({ 'location.coordinates': '2dsphere' });
 
 const Campaign = mongoose.model('Campaign', campaignSchema);
 module.exports = Campaign;

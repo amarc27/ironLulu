@@ -29,17 +29,25 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
     name: req.body.name,
     description: req.body.description,
     category: req.body.category,
-    address: req.body.address,
+    location: {
+      address: req.body.location,
+      coordinates: [
+        req.body.latitude, req.body.longitude
+      ]
+    },
     execDate: req.body.execDate,
     _creator: req.user._id
   });
 
+  console.log("DEBUG newCampaign", newCampaign)
+
   newCampaign.save( (err) => {
     if (err) {
-    res.render('campaign/new', { campaign: newCampaign, types: TYPES });
-  } else {
-    res.redirect(`/campaign/${newCampaign._id}`);
-  }
+      console.log("DEBUG err", err)
+      res.render('campaign/new', { campaign: newCampaign, types: TYPES });
+    } else {
+      res.redirect(`/campaign/${newCampaign._id}`);
+    }
   });
 });
 
