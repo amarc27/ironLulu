@@ -50,7 +50,8 @@ router.get('/:id', checkOwnership, (req, res, next) => {
 
     campaign.populate('_creator').populate('applicants', ( err, campaign) => {
       if (err){ return next(err); }
-      return res.render('campaign/show', { campaign });
+      console.log(req.query)
+      return res.render('campaign/show', { campaign , displayBannier: req.query.dspBannier});
     })
   });
 });
@@ -102,6 +103,8 @@ router.post('/:id/delete', (req, res, next) => {
 
 });
 
+
+
 //Postuler à une campagne
 router.get('/:id/apply',  ensureLoggedIn('/login'), (req, res, next) => {
   let updates = {$push: {applicants: req.user._id}}
@@ -113,7 +116,7 @@ router.get('/:id/apply',  ensureLoggedIn('/login'), (req, res, next) => {
       return next(new Error('404'));
     }
     console.log(campaign)
-    return res.redirect(`/campaign/${campaign._id}`);
+    return res.redirect(`/campaign/${campaign._id}?dspBannier=true`);
   });
 });
 

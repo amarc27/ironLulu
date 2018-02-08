@@ -42,8 +42,6 @@ User.remove()
  .then(() => {
    User.create(myUser)
     .then(myDoc => {
-      console.log("SUCCESS User.create");
-      console.log(myDoc);
 
       Campaign.remove()
         .then(() => {
@@ -52,8 +50,6 @@ User.remove()
           }
           Campaign.create(myCampaigns)
            .then(myDocs => {
-             console.log("SUCCESS Campaign.create");
-             console.log(myDocs);
              mongoose.disconnect();
            })
            .catch(err => { console.log(err) })
