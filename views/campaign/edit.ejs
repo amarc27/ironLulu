@@ -36,12 +36,14 @@
 
               <div class="form-group">
                 <label for="address">Location</label>
-                <input type="text" name="address" class="form-control" value="<%= campaign.address %>">
+                <input id="searchTextField" type="text" name="location" class="form-control" value="<%= campaign.location.address %>">
               </div>
 
               <div class="form-group">
                 <label for="execDate">Date of intervention</label>
                 <input type="date" name="execDate" class="form-control" value="<%= campaign.inputFormattedDate %>">
+                <input id="latitude" type="hidden" name="latitude" class="form-control">
+                <input id="longitude" type="hidden" name="longitude" class="form-control">
               </div>
 
               <div class="form-group">

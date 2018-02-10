@@ -80,7 +80,12 @@ router.post('/:id', ensureLoggedIn('/login'), authorizeCampaign, checkOwnership,
     name: req.body.name,
     description: req.body.description,
     category: req.body.category,
-    address: req.body.address,
+    location: {
+      address: req.body.location,
+      coordinates: [
+        req.body.latitude, req.body.longitude
+      ]
+    },
     execDate: req.body.execDate
   };
 
