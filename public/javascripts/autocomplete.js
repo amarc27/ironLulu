@@ -1,4 +1,3 @@
-
 function initMap() {
     var defaultBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(-33.8902, 151.1759),
