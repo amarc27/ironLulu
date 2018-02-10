@@ -11,8 +11,8 @@
     </div>
     
     <!-- Edit profile -->
-    <a class="btn backer-btn" href="/profile/<%= user._id%>/edit">Edit the profile</a>
-
+    <a class="btn btn-info" href="/profile/<%= user._id%>/edit">Edit the profile</a>
+    <br>
     <!--Delete form-->
     <form action="/profile/<%= user._id%>/delete" method="POST">
       <button type="submit" class="btn btn-danger">Delete my profile</button>

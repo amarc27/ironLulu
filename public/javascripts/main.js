@@ -17,7 +17,6 @@ function initMap() {
     '<p>'+campaign.description+'</p>'+
     '</div>',
 
-    // console.log("DEBUG CONTENT STRING", contentString),
 
     infoWindow = new google.maps.InfoWindow({
       content: contentString

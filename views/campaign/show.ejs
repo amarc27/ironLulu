@@ -1,25 +1,26 @@
-<!-- Main code -->
-<div class="container campaign-container">
-        <div class="row">
-          <% if (displayBannier) { %>
-          <div class="alert success">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            You successfully applied for this campaign !
-          </div>
-          <% } %>
-          <div class="col-sm-2 creator">
-            Created by: <strong><%= campaign._creator && campaign._creator.firstname %></strong>
-          </div>
+<div class="campaign-container">
+    <% if (displayBannier) { %>
+    <div class="alert success">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      You successfully applied for this campaign !
+    </div>
+    <% } %>
 
-          <div class="col-sm-10 campaign-name">
-              <h1><%= campaign.name %></h1>
-              <h2 class="campaign-category">Category : <%= campaignTypes[campaign.category].name %></h2>
-              <p class="campaign-description"><%= campaign.description %></p>
-            </div>
-          </div>
+    <div class="main-details">
+      <div class="creator">
+        Created by: <strong><%= campaign._creator && campaign._creator.firstname %></strong>
+      </div>
+      <div class="category">
+        <p class="campaign-category"><%= campaignTypes[campaign.category].name %></p>
+      </div>
+    </div>
 
-
-          <div class="row">
+    <h1><%= campaign.name %></h1>
+    <div class="main-gen">
+        <div class="main1">
+            <p class="campaign-description"><%= campaign.description %></p>
+        
+        
               <div class="applicants">
                   <% if (campaignIsCurrentUsers) { %>
                     Applicants
@@ -29,27 +30,36 @@
                       <% }) %>
                     </ul>
                   <% } %>
-              </div>
-          </div><br><br>
-
-          <div class="col-sm-4 campaign-info">
-            <div class="campaign-time">"This campaign ends in
-              <strong class="large-strong"><%= campaign.timeRemaining.days %></strong>
-              <span class="light-text"><%= campaign.timeRemaining.unit  %>.</span>"
-            </div>
-            <% if (campaignIsCurrentUsers) { %>
-              <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">Edit the campaign</a>
-            <% } else if (campaign._creator){ %>
-              <div id="apply">
-                  <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/apply">Apply to this campaign</a>
-              </div>
-            <% } %>
-            <% if (campaignIsCurrentUsers) { %>
-            <form action="/campaign/<%= campaign._id%>/delete" method="POST">
-              <button type="submit" class="btn btn-danger">Delete this campaign</button>
-            </form>
-            <% } %>
+              </div><br><br>
           </div>
-
-
-      </div>
+      
+          <div class="main2">
+            <div class="campaign-info">
+                <div class="campaign-time">This campaign ends in
+                  <strong class="large-strong"><%= campaign.timeRemaining.days %></strong>
+                  <span class="light-text"><%= campaign.timeRemaining.unit  %>.</span>
+                </div>
+                
+                <div class="edit-apply-delete-buttons">
+                    <div class="edit-apply-buttons">
+                        <% if (campaignIsCurrentUsers) { %>
+                          <a class="btn btn-info" href="/campaign/<%= campaign._id%>/edit">Edit the campaign</a>
+                        <% } else if (campaign._creator){ %>
+                          <div id="apply">
+                              <a class="btn btn-info" href="/campaign/<%= campaign._id%>/apply">Apply to this campaign</a>
+                          </div>
+                        <% } %>
+                    </div>
+        
+                    <div class="delete-button">
+                        <% if (campaignIsCurrentUsers) { %>
+                          <form action="/campaign/<%= campaign._id%>/delete" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete this campaign</button>
+                          </form>
+                          <% } %>
+                    </div>
+                </div>
+              </div>
+          </div>
+    </div>
+</div>

@@ -106,7 +106,8 @@ main {
   flex-direction: column;
   justify-content: space-around;
   padding: 120px;
-  background-color: #F2F2F2;
+  background-color: #E9E9E9;
+  padding-bottom: 250px;
 }
 
 h1 {
@@ -242,32 +243,30 @@ footer {
 
 
 /* campaign : show.ejs */
-.campaign-name {
-  width: 550px; 
+.main-gen {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.campaign-name h1 {
-  color: red;
+.campaign-container {
+  margin-left: 80px;
 }
 
-.campaign-name h2 {
-  font-size: 16px;
+.main-details {
+  font-size: 15px;
+  margin-bottom: 50px;
 }
 
-.campaign-name p {
-  font-size: 18px;
-}
-
-.applicants {
-  margin-top: 30px;
-  margin-left: 210px;
-}
-
-.campaign-info {
-  margin-left: 180px;
+.campaign-name .campaign-description {
+  font-size: 22px;
 }
 
 
+.edit-apply-delete-buttons .edit-apply-buttons {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 
 
