@@ -22,28 +22,24 @@ router.get('/', (req, res, next) => {
 
 //Liste des candidatures
 router.get('/my-applications', ensureLoggedIn('/login'), (req, res, next) => {
-  Campaign.find({}, (err, campaigns) => {
-    if (err) { return next(err) }
-    var filteredCampaigns = [];
-    campaigns.forEach(campaign => {
-      campaign.applicants.forEach(applicantId => {
-        if (applicantId.toString() == req.user._id.toString()) {
-          filteredCampaigns.push(campaign);
-        }
-      })
-    })
-    res.render('profile/myApplication', {"campaigns": filteredCampaigns} )
+  Campaign.find({applicants: req.user._id}, (err, campaigns) => {
+    if (campaigns.length === 0) {
+      res.redirect('/');
+    } else {
+    res.render('profile/myApplication', {"campaigns": campaigns} )
+    }
   });
 });
 
 //Liste des campagnes d'un utilisateur
-router.get('/mycampaign', (req, res, next) => {
-  Campaign
-    .find({})
-    .populate('_creator')
-    .then((campaigns) => {
-      res.render('index', { campaigns });
-    });
+router.get('/my-campaigns',  ensureLoggedIn('/login'), (req, res, next) => {
+  Campaign.find({_creator: req.user._id}, (err, campaigns) => {
+    if(campaigns.length === 0){
+      res.redirect('/');
+    } else {
+      res.render('profile/myCampaigns', {"campaigns": campaigns} )
+    }
+  });
 });
 
 module.exports = router;
