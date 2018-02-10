@@ -39,11 +39,11 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
     _creator: req.user._id
   });
 
-  console.log("DEBUG newCampaign", newCampaign)
+  // console.log("DEBUG newCampaign", newCampaign)
 
   newCampaign.save( (err) => {
     if (err) {
-      console.log("DEBUG err", err)
+      // console.log("DEBUG err", err)
       res.render('campaign/new', { campaign: newCampaign, types: campaignTypes });
     } else {
       res.redirect(`/campaign/${newCampaign._id}`);
@@ -59,7 +59,7 @@ router.get('/:id', checkOwnership, (req, res, next) => {
     campaign.populate('_creator').populate('applicants', ( err, campaign) => {
       if (err){ return next(err); }
       console.log(req.query)
-      return res.render('campaign/show', { campaign , displayBannier: req.query.dspBannier});
+      return res.render('campaign/show', { campaign , displayBannier: req.query.dspBannier, campaignTypes});
     })
   });
 });
@@ -91,7 +91,7 @@ router.post('/:id', ensureLoggedIn('/login'), authorizeCampaign, checkOwnership,
 
   Campaign.findByIdAndUpdate(req.params.id, updates, (err, campaign) => {
     if (err) {
-      console.log("DEBUG err", err)
+      // console.log("DEBUG err", err)
       return res.render('campaign/edit', {
         campaign,
         errors: err

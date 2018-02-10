@@ -22,7 +22,7 @@ const authRoutes         = require('./routes/authentication.js');
 const campaign           = require('./routes/campaign.js');
 const profile            = require('./routes/profile.js');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/ironlulu');
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
