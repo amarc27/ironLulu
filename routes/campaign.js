@@ -43,8 +43,8 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
 
   newCampaign.save( (err) => {
     if (err) {
-      // console.log("DEBUG err", err)
-      res.render('campaign/new', { campaign: newCampaign, types: campaignTypes });
+      console.log("DEBUG err", err)
+      res.render('campaign/new', { campaign: newCampaign, campaignTypes });
     } else {
       res.redirect(`/campaign/${newCampaign._id}`);
     }
