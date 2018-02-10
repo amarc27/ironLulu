@@ -7,38 +7,35 @@
             You successfully applied for this campaign !
           </div>
           <% } %>
-          <div class="col-sm-2">
-            By: <strong><%= campaign._creator && campaign._creator.firstname %></strong>
+          <div class="col-sm-2 creator">
+            Created by: <strong><%= campaign._creator && campaign._creator.firstname %></strong>
           </div>
-          <div class="col-sm-10">
-            <h1><%= campaign.name %></h1>
-            <h2 class="campaign-category"><%= campaign.category %></h2>
-            <p class="campaign-description"><%= campaign.description %></p>
+        
+          <div class="col-sm-10 campaign-name">
+              <h1><%= campaign.name %></h1>
+              <h2 class="campaign-category">[Category : <%= campaign.category %>]</h2>
+              <p class="campaign-description"><%= campaign.description %></p>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <% if (campaignIsCurrentUsers) { %>
-            Applicants
-            <ul>
-              <% campaign.applicants.forEach((user) => { %>
-                <li><%= user.firstname %></li>
-              <% }) %>
-            </ul>
-          <% } %>
 
-          <div class="col-sm-8">
-            <!-- INSERER IMAGE ICI <img class="campaign-image" src="<%= campaign.image %>"> -->
-          </div>
+
+          <div class="row">
+              <div class="applicants">
+                  <% if (campaignIsCurrentUsers) { %>
+                    Applicants
+                    <ul>
+                      <% campaign.applicants.forEach((user) => { %>
+                        <li><%= user.firstname %></li>
+                      <% }) %>
+                    </ul>
+                  <% } %>
+              </div>
+          </div><br><br>
+  
           <div class="col-sm-4 campaign-info">
-            <div class="campaign-progress">
-              <progress value="<%= campaign.timeRemaining %>"></progress>
-            </div>
-            <div class="campaign-pledged">
-              <span class="campaign-total">$<%= campaign.timeRemaining %></span><br>
-            </div>
-            <div class="campaign-time">
-              <strong class="large-strong"><%= campaign.timeRemaining.days %></strong><br>
-              <span class="light-text"><%= campaign.timeRemaining.unit  %> to go.</span>
+            <div class="campaign-time">"This campaign ends in
+              <strong class="large-strong"><%= campaign.timeRemaining.days %></strong>
+              <span class="light-text"><%= campaign.timeRemaining.unit  %>.</span>"
             </div>
             <% if (campaignIsCurrentUsers) { %>
               <a class="btn backer-btn" href="/campaign/<%= campaign._id%>/edit">Edit the campaign</a>
@@ -53,5 +50,6 @@
             </form>
             <% } %>
           </div>
-        </div>
+
+          
       </div>

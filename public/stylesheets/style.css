@@ -25,6 +25,11 @@ nav {
   padding-right: 80px;
 }
 
+.lulu-logo-nav a img {  
+  width: 80px;
+  margin-right: 80px;  
+}
+
 .nav-menu-right {
   display: flex;
   align-items: center;
@@ -197,4 +202,44 @@ footer {
 /* When moving the mouse over the close button */
 .closebtn:hover {
   color: black;
+}
+
+
+/* campaign : show.ejs */
+.campaign-name {
+  width: 550px; 
+}
+
+.campaign-name h1 {
+  color: red;
+}
+
+.campaign-name h2 {
+  font-size: 16px;
+}
+
+.campaign-name p {
+  font-size: 18px;
+}
+
+.applicants {
+  margin-top: 30px;
+  margin-left: 210px;
+}
+
+.campaign-info {
+  margin-left: 180px;
+}
+
+
+/*  profile : show.ejs*/
+.profile-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+}
+
+.profile-row div {
+  margin-bottom: 20px;
 }

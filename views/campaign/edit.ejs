@@ -35,12 +35,12 @@
               </div>
 
               <div class="form-group">
-                <label for="address">address</label>
+                <label for="address">Location</label>
                 <input type="text" name="address" class="form-control" value="<%= campaign.address %>">
               </div>
 
               <div class="form-group">
-                <label for="execDate">execDate</label>
+                <label for="execDate">Date of intervention</label>
                 <input type="date" name="execDate" class="form-control" value="<%= campaign.inputFormattedDate %>">
               </div>
 
@@ -58,7 +58,8 @@
                 </ul>
                 </div>
             <% } %>
-
+            <script src="/javascripts/autocomplete.js"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDljwuTjCeEN0F7djzIX31SKE-msncOWy8&libraries=places&callback=initMap"></script>
           </div>
         </div>
       </div>
