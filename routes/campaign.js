@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const Campaign = require('../models/campaign');
-const TYPES    = require('../models/campaign-types');
+const campaignTypes    = require('../data/campaign-types');
 const passport = require("passport");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const { authorizeCampaign, checkOwnership } = require('../middleware/campaign-authorization');
@@ -21,7 +21,7 @@ router.get('/all', (req, res, next) => {
 
 //Créer une campagne
 router.get('/new', ensureLoggedIn('/login'), (req, res, next) => {
-  res.render('campaign/new', { types: TYPES });
+  res.render('campaign/new', { campaignTypes });
 });
 
 router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
@@ -44,7 +44,7 @@ router.post('/', ensureLoggedIn('/login'), (req, res, next) => {
   newCampaign.save( (err) => {
     if (err) {
       console.log("DEBUG err", err)
-      res.render('campaign/new', { campaign: newCampaign, types: TYPES });
+      res.render('campaign/new', { campaign: newCampaign, types: campaignTypes });
     } else {
       res.redirect(`/campaign/${newCampaign._id}`);
     }
@@ -70,7 +70,7 @@ router.get('/:id/edit', ensureLoggedIn('/login'), (req, res, next) => {
   Campaign.findById(req.params.id, (err, campaign) => {
     if (err)       { return next(err) }
     if (!campaign) { return next(new Error("404")) }
-    return res.render('campaign/edit', { campaign, types: TYPES })
+    return res.render('campaign/edit', { campaign, campaignTypes })
   });
 });
 
@@ -91,9 +91,10 @@ router.post('/:id', ensureLoggedIn('/login'), authorizeCampaign, checkOwnership,
 
   Campaign.findByIdAndUpdate(req.params.id, updates, (err, campaign) => {
     if (err) {
+      console.log("DEBUG err", err)
       return res.render('campaign/edit', {
         campaign,
-        errors: campaign.errors
+        errors: err
       });
     }
     if (!campaign) {

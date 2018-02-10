@@ -4,8 +4,8 @@
 <div class="flex-container">
   <% campaigns.forEach((campaign) => { %>
     <div class="flex-item">
-      <img src="/images/outils-bricolage.jpg"><br>
-      <span class="category-type"><%= campaign.category %></span><br>
+      <img src="<%= campaignTypes[campaign.category].imgUrl %>"><br>
+      <span class="category-type"><%= campaignTypes[campaign.category].name %></span><br>
       <a class="title" href="/campaign/<%= campaign._id %>"><%= campaign.name %></a><br>
       <span class="light-text description"><%= campaign.description %></span>
       <% if (campaign._creator &&  (campaign._creator.firstname===null)  ) {%>
@@ -14,6 +14,8 @@
     </div>
   <% }) %>
 </div>
+
+<!-- <pre><%= JSON.stringify(campaignTypes, null, 8) %></pre> -->
 
 <script type="text/javascript">
  var myCampaigns = <%- JSON.stringify(campaigns) %>;

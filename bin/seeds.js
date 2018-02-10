@@ -18,7 +18,11 @@ const myCampaigns = [
     _creator: 'John Doe',
     address: '34 rue de Clery',
     execDate: new Date(2018,2,10,20,0),
-    category: 'Menage & repassage'
+    category: 'cleaning',
+    location: {
+      address: "33 rue La Fayette, 75009 Paris",
+      coordinates: [48.87, 2.34]
+    }
   },
   {
     name: 'Déménagement',
@@ -26,7 +30,11 @@ const myCampaigns = [
     _creator: 'John Doe',
     address: '32 rue du mail',
     execDate: new Date(2018,3,18),
-    category: 'Déménagement'
+    category: 'homeMove',
+    location: {
+      address: "33 rue La Fayette, 75009 Paris",
+      coordinates: [48.86, 2.33]
+    }
   },
   {
     name: 'Bricolage',
@@ -34,7 +42,11 @@ const myCampaigns = [
     _creator: 'John Doe',
     address: '3 rue du test',
     execDate: new Date(2018,5,8),
-    category: 'Bricolage'
+    category: 'diy',
+    location: {
+      address: "33 rue La Fayette, 75009 Paris",
+      coordinates: [48.85, 2.32]
+    }
   }
 ];
 

@@ -11,25 +11,21 @@
 
               <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control"> <%= campaign.description %> </textarea>
+                <textarea id="description" name="description" class="form-control"><%= campaign.description %></textarea>
               </div>
 
               <div class="form-group">
                 <label for="category">Category</label><br>
                 <select name="category" id="category">
-                  <% types.forEach((category) => { %>
-                  <!-- This selects the campaign's category in the dropdown -->
-                    <% if (category === campaign.category) { %>
+                  <% Object.keys(campaignTypes).forEach((key) => { %>
+                  <!-- This selects the campaign's key in the dropdown -->
                       <option
-                        selected
+                        <%= campaign.category === key ? "selected" : "" %>
                         type="text"
-                        value="<%= category %>"
+                        value="<%= key %>"
                         class="form-control">
-                      <%= category %>
+                      <%=campaignTypes[key].name %>
                       </option>
-                    <% } else { %>
-                      <option type="text" value="<%= category %>" class="form-control"><%= category %></option>
-                    <% } %>
                   <%  }) %>
                 </select>
               </div>
@@ -37,13 +33,13 @@
               <div class="form-group">
                 <label for="address">Location</label>
                 <input id="searchTextField" type="text" name="location" class="form-control" value="<%= campaign.location.address %>">
+                <input id="latitude" type="hidden" name="latitude" class="form-control" value="<%= campaign.location.coordinates[0] %>">
+                <input id="longitude" type="hidden" name="longitude" class="form-control" value="<%= campaign.location.coordinates[1] %>">
               </div>
 
               <div class="form-group">
                 <label for="execDate">Date of intervention</label>
                 <input type="date" name="execDate" class="form-control" value="<%= campaign.inputFormattedDate %>">
-                <input id="latitude" type="hidden" name="latitude" class="form-control">
-                <input id="longitude" type="hidden" name="longitude" class="form-control">
               </div>
 
               <div class="form-group">

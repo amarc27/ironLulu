@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require("passport");
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const campaignTypes = require('../data/campaign-types');
 
 const Campaign = require('../models/campaign');
 const User = require('../models/user');
@@ -13,7 +14,7 @@ router.get('/', (req, res, next) => {
     .find({})
     .populate('_creator')
     .then((campaigns) => {
-      res.render('index', { campaigns });
+      res.render('index', { campaigns, campaignTypes });
     });
   // New
 });
@@ -36,12 +37,12 @@ router.get('/my-applications', ensureLoggedIn('/login'), (req, res, next) => {
 });
 
 //Liste des campagnes d'un utilisateur
-router.get('/mytest', (req, res, next) => {
+router.get('/mycampaign', (req, res, next) => {
   Campaign
     .find({})
     .populate('_creator')
     .then((campaigns) => {
-      res.render('profile/show', { campaigns });
+      res.render('index', { campaigns });
     });
 });
 

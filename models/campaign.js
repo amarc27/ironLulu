@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 const moment   = require('moment');
-const TYPES    = require('./campaign-types');
+const campaignTypes = require('../data/campaign-types');
 
 const campaignSchema = new Schema({
   name: { type: String, required: true },
@@ -10,7 +10,7 @@ const campaignSchema = new Schema({
   //address: { type: String, required: true },
   location: {address: String, coordinates: [Number]},
   execDate: { type: Date, required: true },
-  category: { type: String, enum: TYPES, required: true },
+  category: { type: String, enum: Object.keys(campaignTypes), required: true },
   applicants: [{ type: Schema.Types.ObjectId, ref: 'User'}]
 },
 {

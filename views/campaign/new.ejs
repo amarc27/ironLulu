@@ -16,8 +16,8 @@
         <div class="form-group">
           <label for="category">Category</label><br>
             <select name="category" id="category">
-              <% types.forEach((category) => { %>
-                <option type="text" value="<%= category %>" class="form-control"><%= category %></option>
+              <% Object.keys(campaignTypes).forEach((key) => { %>
+                <option type="text" value="<%= key %>" class="form-control"><%= campaignTypes[key].name %></option>
               <%  }) %>
             </select>
         </div>

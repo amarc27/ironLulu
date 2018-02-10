@@ -3,14 +3,14 @@
         <div class="row">
           <% if (displayBannier) { %>
           <div class="alert success">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             You successfully applied for this campaign !
           </div>
           <% } %>
           <div class="col-sm-2 creator">
             Created by: <strong><%= campaign._creator && campaign._creator.firstname %></strong>
           </div>
-        
+
           <div class="col-sm-10 campaign-name">
               <h1><%= campaign.name %></h1>
               <h2 class="campaign-category">[Category : <%= campaign.category %>]</h2>
@@ -31,7 +31,7 @@
                   <% } %>
               </div>
           </div><br><br>
-  
+
           <div class="col-sm-4 campaign-info">
             <div class="campaign-time">"This campaign ends in
               <strong class="large-strong"><%= campaign.timeRemaining.days %></strong>
@@ -51,5 +51,5 @@
             <% } %>
           </div>
 
-          
+
       </div>
