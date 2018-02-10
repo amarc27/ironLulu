@@ -1,23 +1,18 @@
-<h1>Edit campaign</h1>
+<h1>Edit profile</h1>
   <form action="/profile/<%= user._id%>" method="post">
     <div class="form-group">
       <label for="firstname">Firstname</label>
-      <input type="text" name="name" class="form-control" value="<%=user.firstname %>">
+      <input type="text" name="firstname" class="form-control" value="<%=user.firstname %>">
     </div>
 
     <div class="form-group">
       <label for="lastname">Lastname</label>
-      <input type="text" name="name" class="form-control" value="<%=user.lastname %>">
+      <input type="text" name="lastname" class="form-control" value="<%=user.lastname %>">
     </div>
 
     <div class="form-group">
       <label for="email">Email address</label>
       <input type="text" name="email" class="form-control" value="<%=user.email %>">
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="text" name="email" class="form-control" value="<%=user.password %>">
     </div>
 
     <div class="form-group">
