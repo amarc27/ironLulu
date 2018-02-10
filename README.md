@@ -57,4 +57,5 @@ Then, run the following commands
 $ npm install  # Install all packages
 $ npm start    # Start the project
 $ npm run dev  # Or start the project with nodemon
+$ node bin\seeds.js #Start the seeds.js
 ```
