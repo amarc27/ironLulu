@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 const User = require('../models/user');
 const Campaign = require('../models/campaign');
-mongoose.connect('mongodb://localhost/ironlulu');
+require("dotenv").config();
+
+
+mongoose.connect(process.env.MONGODB_URI);
 
 const myUser = ({
   firstname: 'John',

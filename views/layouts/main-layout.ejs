@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>IronLulu</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -27,18 +27,25 @@
        </div>
 
       <ul class="nav-menu-left">
+        <!-- <li>
+            <div class="dropdown-menu">
+              <h6 class="dropdown-header">Dropdown header</h6>
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+            </div>
+        </li> -->
         <% if (!userSignedIn) { %>
           <li><a href="/login">Login</a></li>
           <li><a href="/signup">Signup</a></li>
         <% } %>
         <% if (userSignedIn) { %>
           <li>
-            <form action="/logout" method="POST">
-              <button type="submit">Logout</button>
-            </form>
-          </li>
+              <a href="/profile">Profile</a>
+            </li>
           <li>
-            <a href="/profile">Profile</a>
+            <form action="/logout" method="POST">
+              <button type="submit" class="logout-btn">Logout</button>
+            </form>
           </li>
         <% } %>
       </ul>

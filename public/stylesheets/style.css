@@ -4,6 +4,8 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+
+/* NAV BAR */
 nav {
   display: flex;
   align-items: center;
@@ -12,21 +14,25 @@ nav {
   padding: 0;
   border-bottom: 1px solid rgba(103,106,123,0.2);
   background-color: #fff;
-  height: 90px;
+  height: 70px;
   position: fixed;
   z-index: 1;
+  font-weight: 500;
+  font-size: 15px;
+  box-shadow: 0px 4px 20px 0 rgba(22,22,22,0.1);
+  margin-bottom: 0;
 }
 
 .lulu-logo-nav {
   display: flex;
   align-items: center;
-  width: 200px;
+  width: 250px;
   padding-left: 20px;
   padding-right: 80px;
 }
 
 .lulu-logo-nav a img {  
-  width: 80px;
+  width: 60px;
   margin-right: 80px;  
 }
 
@@ -88,11 +94,19 @@ nav {
   color: rgba(103,106,123,0.6);
 }
 
+
+
+
+
+
+
+/* MAIN */
 main {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 120px;
+  background-color: #F2F2F2;
 }
 
 h1 {
@@ -106,6 +120,7 @@ h1 {
 .flex-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   margin-top: 50px;
   flex-wrap: wrap;
 }
@@ -147,17 +162,25 @@ h1 {
 }
 
 
+
+
 /*Google Map */
 #map {
   height: 500px;
   width: 100%;
 }
 
+
+
+
+
+
+/* FOOTER */
 footer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 50px;
+  padding: 15px;
   border-top: 5px solid #6cb83a;
 }
 
@@ -180,6 +203,12 @@ footer {
   color: #545454;
 }
 
+
+
+
+
+
+/* APPLY ALERT BANNER */
 .alert {
   padding: 20px;
   background-color: green;
@@ -203,6 +232,13 @@ footer {
 .closebtn:hover {
   color: black;
 }
+
+
+
+
+
+
+
 
 
 /* campaign : show.ejs */
@@ -232,6 +268,11 @@ footer {
 }
 
 
+
+
+
+
+
 /*  profile : show.ejs*/
 .profile-row {
   display: flex;
@@ -242,4 +283,21 @@ footer {
 
 .profile-row div {
   margin-bottom: 20px;
+}
+
+
+
+.logout-btn {
+  font-family: 'Open Sans', sans-serif;
+  border: none;
+  color: rgba(103,106,123,0.6);
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+}
+
+.logout-btn:hover {
+  text-decoration: underline;
 }
